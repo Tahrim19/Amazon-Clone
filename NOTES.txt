@@ -1,0 +1,5 @@
+article which i followed when making this project:
+https://medium.com/cleverprogrammer/amazon-clone-using-react-the-ultimate-guide-fba2b36f3458
+
+To use material ui, make sure react and react-dom are installed as a dependency before installing MUI.
+
