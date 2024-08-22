@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Link , useNavigate} from 'react-router-dom'
 import '../css/login.css'
 import auth from '../Firebase'
+import firebase from '../Firebase' 
 
 
 export default function Login() {
@@ -12,21 +13,19 @@ export default function Login() {
 
   const signIn = e => {
     e.prevent.default()
-    auth
-      .SignInWithEmailAndPassword(email,password)
-      .then(auth => {
-        navigate.push('/')
+    firebase.auth.SignInWithEmailAndPassword(email,password)
+      .then((auth) => {
+        navigate('/')
       })
       .catch(error => alert(error.message))
   }
   
   const register = e => {
     e.preventDefault();
-    auth
-        .createUserWithEmailAndPassword(email, password)
+    firebase.auth.createUserWithEmailAndPassword(email, password)
         .then((auth) => {
             if (auth) {
-                navigate.push('/')
+                navigate('/')
             }
         })
         .catch(error => alert(error.message))

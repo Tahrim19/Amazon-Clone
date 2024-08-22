@@ -21,6 +21,7 @@ console.log("firebase initialized")
 if(firebaseConfig.apiKey){
     console.log("found api key")
 }
+
 // Initialize Firestore and Auth services
 const db = getFirestore(app);
 const auth = getAuth(app);
