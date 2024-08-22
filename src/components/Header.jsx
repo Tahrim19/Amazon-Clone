@@ -4,10 +4,16 @@ import SearchIcon from '@mui/icons-material/Search'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import { useStateValue } from './StateProvider'
 import { Link } from 'react-router-dom'
+import auth  from '../Firebase'
 
 export default function Header() {
   const [{basket , user} , dispatch] = useStateValue()
 
+  const handleAuthentication = () => {
+    if(user){
+      auth.signOut();
+    }
+  }
   return (
     <div className='header'>
       <img className='header-logo'
@@ -20,10 +26,12 @@ export default function Header() {
       </div>
 
         <div className='header-nav'>
-            <div className='header-option'>
-                <span className='header-option-line-one'>Hello Guest</span>
-                <span className='header-option-line-two'>Sign In</span>
+        <Link to={!user && '/login'}>
+            <div className='header-option' onClick={handleAuthentication}>
+                <span className='header-option-line-one'>Hello {!user? 'Guest' : user.email}</span>
+                <span className='header-option-line-two'>{user? 'Sign Out' : 'Sign In'}</span>
             </div>
+        </Link>
             <div className='header-option'>
                 <span className='header-option-line-one'>Returns</span>
                 <span className='header-option-line-two'>& Orders</span>
