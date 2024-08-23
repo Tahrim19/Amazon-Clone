@@ -1,16 +1,17 @@
-import React, { useEffect , useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Login from "./components/Login";
-// import { auth } from './Firebase'
-import firebase from './Firebase' 
+import { auth } from './Firebase'; 
 import { StateContext } from './components/StateProvider';
+import Checkout from "./components/Checkout";
 
 export default function App() {
   const [{}, dispatch] = useContext(StateContext);
+
   useEffect(() => {
-    firebase.auth.onAuthStateChanged((authUser) => { // Fixed function name
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch({
           type: "SET_USER",
@@ -24,14 +25,16 @@ export default function App() {
       }
     });
 
+    return () => unsubscribe(); // Cleanup on unmount
   }, [dispatch]);
 
   return (
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/" element={<> <Header /><Home /> </>}/>
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/" element={<> <Header /><Home /> </>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/checkout" element={<> <Header /><Checkout /> </>} /> 
         </Routes>
       </Router>
     </div>

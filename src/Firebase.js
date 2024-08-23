@@ -16,14 +16,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log("firebase initialized")
-
-if(firebaseConfig.apiKey){
-    console.log("found api key")
-}
+console.log("firebase initialized");
 
 // Initialize Firestore and Auth services
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export default { db, auth };
+export { db, auth }; // Export individual services
+export default { db, auth }; // Default export for compatibility
