@@ -4,12 +4,19 @@
     align-items: center;
     justify-content: flex-end;
     margin: 10px;
-    padding: 20px;
+    padding: 15px; /* Reduced padding */
     width: 100%;
-    max-height: 400px;
-    min-width: 100px;
+    max-height: 350px; /* Reduced max height */
+    min-width: 150px; /* Reduced min-width */
+    flex: 1 1 18%; /* Adjusted flex basis for smaller cards */
     background-color: white;
     z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.product:hover {
+    transform: scale(1.05);
 }
 
 .product-rating {
@@ -17,18 +24,23 @@
 }
 
 .product > img {
-    max-height: 200px;
+    max-height: 150px; /* Reduced image height */
     width: 100%;
     object-fit: contain;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reduced margin */
 }
 
 .product > button {
     background: #f0c14b;
     border: 1px solid;
-    margin-top: 10px;
+    margin-top: 8px; /* Reduced margin */
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
+    cursor: pointer;
+}
+
+.product > button:hover {
+    background: #ddb347;
 }
 
 .product-price {
@@ -36,6 +48,7 @@
 }
 
 .product-info {
-    height: 100px;
-    margin-bottom: 15px;
+    height: 80px; /* Reduced height */
+    margin-bottom: 10px; /* Reduced margin */
+    text-align: center;
 }
